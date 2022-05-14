@@ -1,0 +1,22 @@
+<app-window [title]="currentPlayerName + ': Pick a Word to Draw'" [active]="true" [showMenuBar]="true" [width]="470" [height]="245">
+    <div class="window-area">
+        <div class="top">
+            <ul>
+                <li *ngFor="let word of wordOptions" [class.selected]="selectedWord == word">
+                    <a (click)="setSelectedWord(word)">
+                        <img src="assets/images/window/icons/paint_lg.png" alt="MSN">
+                        <p>{{word.difficulty}}:</p><p>{{word.word}} ({{word.points}}pts)</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="standalone-buttons" style="margin:0; justify-content: space-between; gap:0;">
+            <button (click)="requestNewWords()" style="margin-left: 4px"><span>Request New Words (-50pts)</span></button>
+            <button [disabled]="true"><span>Skip Turn (-500pts)</span></button>
+            <button [disabled]="selectedWord == null" (click)="pickWord()" style="margin: 0; margin-right: 2px;"><span>Start Game</span></button>
+        </div>
+        <div class="status-area" style="margin-top:6px; margin-left:3px;width: calc(100% - 6px);">
+            <p>{{statusText}}</p>
+        </div>
+    </div>
+</app-window>

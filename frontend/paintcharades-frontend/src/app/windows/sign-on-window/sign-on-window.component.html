@@ -1,0 +1,50 @@
+<app-window [title]="title" [active]="true" [showMenuBar]="false" [width]="377">
+    <div class="content" *ngIf="!attemptingLogin">
+        <div class="heading">
+            <img src="assets/images/window/connect/icon.png" alt="Computer Icon">
+            <p>PaintCharades</p>
+        </div>
+        <hr>
+        <div class="username-area">
+            <label class="wide" for="username"><span class="underline">U</span>sername (Required): </label>
+            <div class="input-wrapper">
+                <input type="text" name="username" id="username" [maxLength]="8" [(ngModel)]="username">
+            </div>
+        </div>
+        <div class="roomcode-area">
+            <label class="wide" style="margin-top: 1rem;" for="username"><span class="underline">R</span>oom Code (Optional): </label>
+            <div class="input-wrapper">
+                <input style="text-transform:uppercase" type="text" name="username" id="username" [maxLength]="4" [(ngModel)]="roomCode">
+            </div>
+        </div>
+        <hr>
+        <div class="phone-area">
+            <label for="username"><span class="underline">P</span>hone number: </label>
+            <div class="input-wrapper">
+                <input type="text" name="username" id="username" [disabled]="true" value="15552529348" style="max-width: 125px;">
+            </div>
+        </div>
+        <div class="dialing-from-area">
+            <label style="margin-top: 1rem;" for="username"><span class="underline">D</span>ialing from: </label>
+            <div class="input-wrapper">
+                <input type="text" name="username" id="username" [disabled]="true" value="Home" style="max-width: 125px;">
+            </div>
+            <button style="margin-left: 0.5rem; margin-right: 0;" [disabled]="true"><span style="padding-top: 2px; padding-bottom: 2px;">Dial Properties...</span></button>
+        </div>
+        <hr>
+        <div class="connect-area">
+            <button [disabled]="!readyToLogIn()" style="margin-left: 0.5rem;"><span style="padding-top: 2px; padding-bottom: 2px;" (click)="logIn()">Connect</span></button>
+            <button style="margin-left: 0.5rem;" [disabled]="true"><span style="padding-top: 2px; padding-bottom: 2px;">Cancel</span></button>
+        </div>
+    </div>
+    <div class="content" *ngIf="attemptingLogin">
+        <div class="heading" style="justify-content: space-between; margin-bottom: 0;">
+            <div class="icon-area heading" style="margin-bottom: 0;">
+                <img *ngIf="!canCancel" src="assets/images/window/connect/connecting.gif" alt="Computer Icon">
+                <img *ngIf="canCancel" src="assets/images/window/alert/alert.png" alt="Error Icon">
+                <p style="font-size: 0.8rem;">Status: {{statusText}}</p>
+            </div>
+            <button [disabled]="!canCancel" style="margin-left: 0.5rem; align-self: flex-end;" (click)="cancelLogIn()"><span style="padding: 2px 18px">Cancel</span></button>
+        </div>
+    </div>
+</app-window>

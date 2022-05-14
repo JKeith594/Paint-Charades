@@ -1,0 +1,298 @@
+<app-window [title]="'Paint - ' + userDrawing + ' is Drawing...'" [active]="true" [showMenuBar]="true" [width]="510" [height]="567">
+    <div class="paint-screen">
+        <div class="top">
+            <div class="left">
+                <div class="buttons">
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/star_select.png" alt="Select"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/rect_select.png" alt="Select"></span>
+                    </button>
+                    <button [disabled]="isClient" [class.selected]="selectedTool == 'ERASE' && !isClient" (click)="selectTool('ERASE', 5)">
+                        <span><img src="assets/images/window/paint/erase.png" alt="Erase"></span>
+                    </button>
+                    <button [disabled]="isClient" [class.selected]="selectedTool == 'FLOOD' && !isClient" (click)="selectTool('FLOOD', null!)">
+                        <span><img src="assets/images/window/paint/fill.png" alt="Fill"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/eyedrop.png" alt="Eyedrop"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/magnify.png" alt="Magnify"></span>
+                    </button>
+                    <button [disabled]="isClient" [class.selected]="selectedTool == 'DRAW' && selectedToolSize == 1 && !isClient"
+                        (click)="selectTool('DRAW', 1)">
+                        <span><img src="assets/images/window/paint/pencil.png" alt="Pencil"></span>
+                    </button>
+                    <button [disabled]="isClient" [class.selected]="selectedTool == 'DRAW' && selectedToolSize != 1 && !isClient"
+                        (click)="selectTool('DRAW', 5)">
+                        <span><img src="assets/images/window/paint/brush.png" alt="Brush"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/spray.png" alt="Spray"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/text.png" alt="Text"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/line.png" alt="Line"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/curve.png" alt="Curve"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/rect.png" alt="Rectangle"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/shape.png" alt="Shape"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/circle.png" alt="Circle"></span>
+                    </button>
+                    <button disabled>
+                        <span><img src="assets/images/window/paint/rounded_rect.png"
+                                alt="Rounded Rectangle"></span>
+                    </button>
+                </div>
+                <div class="line-thickness">
+                    <ul *ngIf="((selectedTool == 'DRAW' || selectedTool == 'ERASE') && selectedToolSize != 1) && !isClient">
+                        <li><a [class.selected]="selectedToolSize == 2"
+                                (click)="selectTool(selectedTool, 2)" class=""><span class="thin"></span></a></li>
+                        <li><a [class.selected]="selectedToolSize == 5"
+                                (click)="selectTool(selectedTool, 5)"><span class="thick"></span></a></li>
+                        <li><a [class.selected]="selectedToolSize == 8"
+                                (click)="selectTool(selectedTool, 8)"><span class="thicker"></span></a></li>
+                        <li><a [class.selected]="selectedToolSize == 11"
+                                (click)="selectTool(selectedTool, 11)"><span class="thickest"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right">
+                <div class="canvas-area">
+                    <div class="input-wrapper" style="height: 415px; width: 417px; padding: 3px; background: #808080;">
+                        <canvas *ngIf="!isClient" #paintCanvasElement style="border: none;" width="407" height="407"></canvas>
+                        <img class="drawing-image" *ngIf="isClient" src="{{currentImageBinaryString}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="colors">
+                <div class="palette">
+                    <div class="selected-color">
+                        <div class="color">
+                            <div class="color-swatch main">
+                                <div class="swatch" [style.background-color]="selectedColor">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-area">
+                        <a (click)="selectColor('#000000')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #000000;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7b7b7b')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7b7b7b;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7c1b00')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7c1b00;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7b7b1d')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7b7b1d;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#007b00')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #007b00;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#007a7b')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #007a7b;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#00007b')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #00007b;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7c007c')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7c007c;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7b7b1d')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7b7b1d;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#00395b')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #00395b;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#007aff')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #007aff;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#00395b')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #00395b;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#1a00fe')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #1a00fe;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7c1b00')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7c1b00;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#ffffff')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #ffffff;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#bdbdbd')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #bdbdbd;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#ff283a')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #ff283a;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#ffff01')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #ffff01;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#00ff3d')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #00ff3d;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#01ffff')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #01ffff;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#1a00fe')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #1a00fe;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#ff00ff')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #ff00ff;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#ffff7b')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #ffff7b;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#00ff3d')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #00ff3d;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7bffff')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7bffff;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#7b7bff')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #7b7bff;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#ff283a')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #ff283a;">
+        
+                                </div>
+                            </div>
+                        </a>
+                        <a (click)="selectColor('#ff283a')">
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #ff283a;">
+        
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <button (click)="undo()" [disabled]="undoCount == 0 || isClient">Undo</button>
+            </div>
+            <div class="status-area">
+                <p>{{statusText()}}</p>
+            </div>
+        </div>
+    </div>
+</app-window>

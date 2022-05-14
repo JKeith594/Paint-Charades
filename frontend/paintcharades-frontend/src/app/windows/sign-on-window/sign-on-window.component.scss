@@ -1,0 +1,57 @@
+.content {
+    width:100%;
+    height: 100%;
+    padding: 1rem;
+    font-size: 0.9rem;
+    label {
+        margin-top: 0.5rem;
+        display: inline-block;
+        font-size: 0.8rem;
+        margin-left: 1px;
+        margin-bottom: 2px;
+        min-width: 100px;
+
+        &.wide {
+            min-width: 130px;
+        }
+    }
+
+    .canvas-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    input, .input-wrapper {
+        display: inline-block;
+        max-width: 200px;
+    }
+
+}
+
+canvas {
+    width: 100%;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    img {
+        display: inline-block;
+        margin-right: 1.5rem;
+    }
+}
+
+.connect-area {
+    display: flex; 
+    justify-content: flex-end;
+
+    button {
+        span {
+            padding: 2px 1.5rem;
+        }
+    }
+}

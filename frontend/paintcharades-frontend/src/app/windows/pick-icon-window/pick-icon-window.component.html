@@ -1,0 +1,12 @@
+<app-window [title]="'Choose Your Icon'" [active]="true" [showMenuBar]="true" [width]="470" [height]="215">
+    <div class="window-area">
+        <div class="top">
+            <ul>
+                <li *ngFor="let icon of icons" class="{{getClassList(icon)}}">
+                    <a (click)="setSelectedIcon(icon)"><img src="{{getIconPath(icon)}}" alt="{{icon.description}}">
+                        <p>{{icon.description}}</p></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</app-window>

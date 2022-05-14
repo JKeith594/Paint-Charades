@@ -1,0 +1,30 @@
+<app-window [title]="'Instant Message'" [active]="true" [showMenuBar]="true" [width]="470" [height]="410" [windowIconUrl]="'assets/images/window/icons/message.png'">
+    <div class="window-area">
+        <div class="chat-area">
+            <div class="chat" #chatScrollContainer>
+                <p *ngFor="let message of chatHistory; let last = last">
+                    <span class="user"><img src="{{getIconUrl(message.icon)}}" alt="Player Icon"><strong>{{message.username}}:</strong>
+                    </span> 
+                    <span class="message">
+                        {{message.message}}
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="text-input-area">
+            <div class="text">
+                <textarea (keydown.enter)="sendChatMessage($event)" #chatInputBox [(ngModel)]="messageToSend"></textarea>
+            </div>
+        </div>
+        <div class="button-area">
+            <span class="inside">
+                <img src="assets/images/window/chat/misc_buttons.png" alt="">
+                <button class="send-button" (click)="sendChatMessage(null)" [disabled]="messageToSend.length == 0">
+                    <span>
+                        <span>Send Message</span>
+                    </span>
+                </button>
+            </span>
+        </div>
+    </div>
+</app-window>

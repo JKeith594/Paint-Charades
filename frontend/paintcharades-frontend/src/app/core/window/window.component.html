@@ -1,0 +1,40 @@
+<div class="window" [class.active]="active" [style.width.px]="width" [style.height.px]="height" [class.visible]="visible">
+    <div class="contents">
+        <div class="title">
+            <div class="content-left">
+                <img src="{{windowIconUrl}}" alt="Window Icon">
+            </div>
+            <div class="content-middle">
+                <span>{{title}}</span>
+            </div>
+            <div class="content-right">
+                <button disabled class="square">
+                    <span>
+                        <img src="assets/images/window/action_icons/minimize.png" alt="Minimize" />
+                    </span>
+                </button>
+                <button disabled class="square">
+                    <span>
+                        <img src="assets/images/window/action_icons/maximize.png" alt="Maximize" />
+                    </span>
+                </button>
+                <button disabled class="square">
+                    <span>
+                        <img src="assets/images/window/action_icons/close.png" alt="Close" />
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="menu" *ngIf="showMenuBar">
+            <ul>
+                <li><span class="underline">F</span>ile</li>
+                <li><span class="underline">E</span>dit</li>
+                <li><span class="underline">V</span>iew</li>
+                <li><span class="underline">H</span>elp</li>
+            </ul>
+        </div>
+        <div class="window-body">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

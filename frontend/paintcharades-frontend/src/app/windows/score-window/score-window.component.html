@@ -1,0 +1,14 @@
+<app-window [title]="'Scores'" [active]="true" [showMenuBar]="true" [width]="470" [height]="215">
+    <div class="window-area">
+        <div class="top">
+            <ul>
+                <li *ngFor="let player of players; let i = index">
+                    <p>{{i + 1}}.</p>
+                    <img *ngIf="player.icon != ''" src="{{getIconUrl(player.icon)}}" alt="{{player.icon}}">
+                    <img *ngIf="player.icon == ''" src="assets/images/window/icons/loading.png" alt="Choosing Icon">
+                    <p>{{player.name}} - {{player.score}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</app-window>

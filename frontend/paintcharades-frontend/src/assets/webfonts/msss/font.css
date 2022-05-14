@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Microsoft Sans Serif';
+    src: url('MSSS.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'pix M 8pt bold';
+    src: url('MSSSB.woff') format('woff');
+}

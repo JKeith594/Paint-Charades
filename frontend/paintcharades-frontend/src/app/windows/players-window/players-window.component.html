@@ -1,0 +1,31 @@
+<app-window [title]="'Players'" [active]="true" [showMenuBar]="true" [width]="470" [height]="adminMode ? 308 : 296">
+    <div class="window-area">
+        <div class="top">
+            <ul>
+                <li *ngFor="let player of players" [class.selected]="player.name == myUsername">
+                    <div class="image">
+                        <img *ngIf="player.choosingWord" class="loading" src="assets/images/window/icons/hourglass.png" alt="Choosing Word">
+                        <img *ngIf="player.icon == ''" src="assets/images/window/icons/loading.png" alt="Choosing Icon">
+                        <img *ngIf="player.icon != ''" src="{{getIconUrl(player.icon)}}" alt="{{player.icon}}">
+                    </div>
+                    <p><img *ngIf="player.isAdmin" src="assets/images/window/icons/player.png" alt="Admin">{{player.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="false" class="status-area" style="margin-top:-2px; margin-left:3px;width: calc(100% - 6px); display: flex; justify-content: space-between; align-items: center;">
+            <p>Select a Player to: </p>
+            <div class="buttons">
+                <button [disabled]="true"><span>Kick</span></button>
+                <button [disabled]="true"><span>Make Admin</span></button>
+            </div>
+        </div>
+        <div  class="standalone-buttons" style="margin-top: 0;">
+            <button [disabled]="true"><span>Leave Game</span></button>
+            <button *ngIf="adminMode" [disabled]="true"><span>End Game</span></button>
+            <button *ngIf="adminMode" [disabled]="pickingWord" (click)="startGame()"><span>Start Game</span></button>
+        </div>
+        <div class="status-area" style="margin-top:6px; margin-left:3px;width: calc(100% - 6px);">
+            <p>{{statusText}}</p>
+        </div>
+    </div>
+</app-window>

@@ -1,0 +1,14 @@
+<div class="top">
+    <h1>PaintCharades: Room {{roomCode}}</h1>
+</div>
+<div class="bottom">
+    <div class="left" *ngIf="!pickingWord">
+        <app-players-window [adminMode]="true"></app-players-window>
+        <app-score-window></app-score-window>
+    </div>
+    <div class="right" *ngIf="!pickingWord">
+        <app-pick-icon-window></app-pick-icon-window>
+        <app-chat-window></app-chat-window>
+    </div>
+    <app-pick-word-window *ngIf="pickingWord"></app-pick-word-window>
+</div>
